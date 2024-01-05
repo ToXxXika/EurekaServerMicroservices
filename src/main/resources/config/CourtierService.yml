@@ -1,0 +1,8 @@
+server:
+  port: 8084
+eureka:
+  instance:
+    hostname: localhost
+    client:
+      service-url:
+        defaultZone: http://${eureka.instance.hostname}:8761/eureka/
