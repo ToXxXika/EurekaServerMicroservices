@@ -1,0 +1,37 @@
+spring:
+  application:
+    name: GatewayService
+  cloud:
+    gateway:
+      mvc:
+        routes:
+          - id: OrderService
+            uri: lb://OrderService
+            predicates:
+              - Path=/order/**
+          - id: KitchenService
+            uri: lb://KitchenService
+            predicates:
+              - Path=/ticket/**
+          - id: RestaurantService
+            uri: lb://RestaurantService
+            predicates:
+              - Path=/adresse/**
+              - Path=/menu/**
+          - id: CourtierService
+            uri: lb://CourtierService
+            predicates:
+              - Path=/location/**
+eureka:
+  client:
+    register-with-eureka: true
+    fetch-registry: true
+    serviceUrl:
+      defaultZone: http://localhost:8761/eureka/
+server:
+  port: 8087
+
+management:
+  tracing:
+    sampling:
+      probability: 1.0
