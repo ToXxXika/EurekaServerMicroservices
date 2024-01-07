@@ -19,12 +19,7 @@ pipeline {
                 sh 'mvn test'
             }
         }
-        stage('Run') {
-            steps {
-                // This starts the Spring Boot app in the background
-                sh 'nohup mvn spring-boot:run &'
-            }
-        }
+     
     }
     post {
         always {
