@@ -16,4 +16,8 @@ public class OrderController {
     public boolean CreateOrder(@RequestBody Order o){
         return orderService.CreateOrder(o);
     }
+    @GetMapping("/")
+    public String test(){
+    return "OrderService is here" ;
+}
 }
