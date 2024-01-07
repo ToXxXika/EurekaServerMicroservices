@@ -9,27 +9,22 @@ pipeline {
         }
         stage('Build') {
             steps {
-               withMaven(maven:'M3'){
-                sh 'mvn clean install'
-                }
+               withMaven(maven:'M3') {
+                bat 'mvn clean install'
+               }
             }
         }
         stage('Test') {
             steps {
-                sh 'mvn test'
+                bat 'mvn test'
             }
         }
-        stage('Run') {
-            steps {
-                // This starts the Spring Boot app in the background
-                sh 'nohup mvn spring-boot:run &'
-            }
-        }
+     
     }
     post {
         always {
             // Actions to perform after the pipeline execution, like cleanup
-            echo 'CourtierService is up and running'
+            echo 'CourtierService pipeline execution completed.'
         }
     }
 }
