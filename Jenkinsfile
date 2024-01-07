@@ -1,7 +1,7 @@
 pipeline {
     agent any
 
-    stages {
+   stages {
         stage('Checkout') {
             steps {
                 checkout scm
@@ -9,22 +9,12 @@ pipeline {
         }
         stage('Build') {
             steps {
-             withMaven(maven:'M3'){
-                sh 'mvn clean install'
-                }
+               withMaven(maven:'M3') {
+                bat 'mvn clean install'
+               }
             }
         }
-        stage('Test') {
-            steps {
-                sh 'mvn test'
-            }
-        }
-        stage('Run') {
-            steps {
-                // This starts the Spring Boot app in the background
-                sh 'nohup mvn spring-boot:run &'
-            }
-        }
+        
     }
     post {
         always {
